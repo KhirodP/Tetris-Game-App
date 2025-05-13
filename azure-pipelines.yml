@@ -37,3 +37,18 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+  - job: Deploy
+    displayName: Deploy
+    steps:
+      - task: AzureRmWebAppDeployment@5
+        inputs:
+          ConnectionType: 'AzureRM'
+          azureSubscription: 'Pay-As-You-Go(2feb6381-9dfe-4a81-afcd-1e3bf17321b8)'
+          appType: 'webAppContainer'
+          WebAppName: 'tetries'
+          deployToSlotOrASE: true
+          ResourceGroupName: 'Tetriesgameapp'
+          SlotName: 'production'
+          DockerNamespace: '$(dockerRegistryServiceConnection)'
+          DockerRepository: '$(dockerRegistryServiceConnection)'
+          DockerImageTag: '$(tag)'
