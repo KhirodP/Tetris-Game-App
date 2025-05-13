@@ -50,5 +50,5 @@ stages:
           ResourceGroupName: 'Tetriesgameapp'
           SlotName: 'production'
           DockerNamespace: '$(dockerRegistryServiceConnection)'
-          DockerRepository: '$(dockerRegistryServiceConnection)'
+          DockerRepository: '$(imageRepository)'
           DockerImageTag: '$(tag)'
